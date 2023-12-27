@@ -2,6 +2,7 @@
 using API.Interfaces;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Data;
@@ -27,14 +28,19 @@ public class UserRepository : IUserRepository
 
     public async Task<IEnumerable<MemberDto>> GetMembersAsync()
     {
-        throw new NotImplementedException();
+        var users = await _context.Users
+            .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
+            .ToListAsync();
+        return users;
     }
 
+    //not used
     public async Task<AppUser> GetUserByIdAsync(int id)
     {
         return await _context.Users.FindAsync(id);
     }
 
+    //not used
     public async Task<AppUser> GetUserByUsernameAsync(string username)
     {
         return await _context.Users
@@ -42,6 +48,7 @@ public class UserRepository : IUserRepository
             .SingleOrDefaultAsync(user => user.UserName == username);
     }
 
+    //not used
     public async Task<IEnumerable<AppUser>> GetUsersAsync()
     {
         return await _context.Users
