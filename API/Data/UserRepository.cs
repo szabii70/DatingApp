@@ -34,13 +34,11 @@ public class UserRepository : IUserRepository
         return users;
     }
 
-    //not used
     public async Task<AppUser> GetUserByIdAsync(int id)
     {
         return await _context.Users.FindAsync(id);
     }
 
-    //not used
     public async Task<AppUser> GetUserByUsernameAsync(string username)
     {
         return await _context.Users
@@ -48,7 +46,6 @@ public class UserRepository : IUserRepository
             .SingleOrDefaultAsync(user => user.UserName == username);
     }
 
-    //not used
     public async Task<IEnumerable<AppUser>> GetUsersAsync()
     {
         return await _context.Users
