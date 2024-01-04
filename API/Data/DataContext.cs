@@ -7,6 +7,7 @@ public class DataContext : DbContext
 {
     public virtual DbSet<AppUser> Users { get; set; }
     public virtual DbSet<UserLike> Likes { get; set; }
+    public virtual DbSet<Message> Messages { get; set; }
 
     public DataContext(DbContextOptions options) : base(options)
     {
@@ -30,5 +31,15 @@ public class DataContext : DbContext
             .WithMany(l => l.LikedByUsers)
             .HasForeignKey(s => s.TargetUserId)
             .OnDelete(DeleteBehavior.NoAction);
+
+        builder.Entity<Message>()
+            .HasOne(u => u.Recipient)
+            .WithMany(l => l.MessagesReceived)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        builder.Entity<Message>()
+            .HasOne(u => u.Sender)
+            .WithMany(l => l.MessagesSent)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }
