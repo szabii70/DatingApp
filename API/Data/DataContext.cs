@@ -11,6 +11,8 @@ public class DataContext : IdentityDbContext
 {
     public virtual DbSet<UserLike> Likes { get; set; }
     public virtual DbSet<Message> Messages { get; set; }
+    public virtual DbSet<Group> Groups { get; set; }
+    public virtual DbSet<Connection> Connections { get; set; }
 
     public DataContext(DbContextOptions options) : base(options)
     {
