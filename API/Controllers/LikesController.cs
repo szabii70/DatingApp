@@ -9,27 +9,25 @@ namespace API;
 
 public class LikesController : BaseApiController
 {
-    private readonly IUserRepository _userRepository;
-    private readonly ILikeRepository _likesRepository;
+    private readonly IUnitOfWork _uow;
 
-    public LikesController(IUserRepository userRepository, ILikeRepository likesRepository)
+    public LikesController(IUnitOfWork uow)
     {
-        _userRepository = userRepository;
-        _likesRepository = likesRepository;
+        _uow = uow;
     }
 
     [HttpPost("{username}")]
     public async Task<ActionResult> AddLike(string username)
     {
         var sourceUserId = User.GetUserId();
-        var likedUser = await _userRepository.GetUserByUsernameAsync(username);
-        var sourceUser = await _likesRepository.GetUserWithLikes(sourceUserId);
+        var likedUser = await _uow.UserRepository.GetUserByUsernameAsync(username);
+        var sourceUser = await _uow.LikesRepository.GetUserWithLikes(sourceUserId);
 
         if(likedUser == null) return NotFound();
 
         if(sourceUser.UserName == username) return BadRequest("You cannot like yourself");
 
-        var userLike = await _likesRepository.GetUserLike(sourceUserId, likedUser.Id);
+        var userLike = await _uow.LikesRepository.GetUserLike(sourceUserId, likedUser.Id);
 
         if(userLike != null) return BadRequest("You already liked this person");
 
@@ -41,7 +39,7 @@ public class LikesController : BaseApiController
 
         sourceUser.LikedUsers.Add(userLike);
 
-        if (await _userRepository.SaveAllAsync()) return Ok();
+        if (await _uow.Complete()) return Ok();
 
         return BadRequest("Failed to like user");
     }
@@ -51,7 +49,7 @@ public class LikesController : BaseApiController
     {
         likesParams.UserId = User.GetUserId();
 
-        var users = await _likesRepository.GetUserLikes(likesParams);
+        var users = await _uow.LikesRepository.GetUserLikes(likesParams);
 
         Response.AddPaginationHeader(new PaginationHeader(
             users.CurrentPage,
