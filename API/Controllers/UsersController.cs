@@ -49,7 +49,8 @@ public class UsersController : BaseApiController
     [HttpGet("{username}")]
     public async Task<ActionResult<MemberDto>> GetUser(string username)
     {
-        return await _uow.UserRepository.GetMemberAsync(username);
+        var currentUsername = User.GetUsername(); 
+        return await _uow.UserRepository.GetMemberAsync(username, username == currentUsername);
     }
 
     [HttpPut]

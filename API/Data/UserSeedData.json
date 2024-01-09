@@ -14,7 +14,18 @@
     "Photos": [
       {
         "Url": "https://randomuser.me/api/portraits/women/38.jpg",
-        "IsMain": true
+        "IsMain": true,
+        "IsApproved": true
+      },
+      {
+        "Url": "https://randomuser.me/api/portraits/women/39.jpg",
+        "IsMain": false,
+        "IsApproved": false
+      },
+      {
+        "Url": "https://randomuser.me/api/portraits/women/40.jpg",
+        "IsMain": false,
+        "IsApproved": false
       }
     ]
   },
@@ -33,7 +44,18 @@
     "Photos": [
       {
         "Url": "https://randomuser.me/api/portraits/women/11.jpg",
-        "IsMain": true
+        "IsMain": true,
+        "IsApproved": true
+      },
+      {
+        "Url": "https://www.google.com/search?sca_esv=596768218&rlz=1C1GCEA_enHU1088HU1088&sxsrf=AM9HkKnGKdlKjAH-4FKPLjkNss5c4YKzaw:1704792101723&q=cartoon+profile+images&tbm=isch&source=lnms&sa=X&ved=2ahUKEwjg_Y29_c-DAxVf_rsIHcpGBscQ0pQJegQIDBAB&biw=958&bih=943&dpr=1#imgrc=V262DwxEsnxeWM",
+        "IsMain": false,
+        "IsApproved": false
+      },
+      {
+        "Url": "https://www.google.com/search?sca_esv=596768218&rlz=1C1GCEA_enHU1088HU1088&sxsrf=AM9HkKnGKdlKjAH-4FKPLjkNss5c4YKzaw:1704792101723&q=cartoon+profile+images&tbm=isch&source=lnms&sa=X&ved=2ahUKEwjg_Y29_c-DAxVf_rsIHcpGBscQ0pQJegQIDBAB&biw=958&bih=943&dpr=1#vhid=igaRpWF10x-oyM&vssid=3981:V262DwxEsnxeWM",
+        "IsMain": false,
+        "IsApproved": false
       }
     ]
   },
@@ -52,7 +74,8 @@
     "Photos": [
       {
         "Url": "https://randomuser.me/api/portraits/women/55.jpg",
-        "IsMain": true
+        "IsMain": true,
+        "IsApproved": true
       }
     ]
   },
@@ -71,7 +94,8 @@
     "Photos": [
       {
         "Url": "https://randomuser.me/api/portraits/women/27.jpg",
-        "IsMain": true
+        "IsMain": true,
+        "IsApproved": true
       }
     ]
   },
@@ -90,7 +114,8 @@
     "Photos": [
       {
         "Url": "https://randomuser.me/api/portraits/women/2.jpg",
-        "IsMain": true
+        "IsMain": true,
+        "IsApproved": true
       }
     ]
   },
@@ -109,7 +134,8 @@
     "Photos": [
       {
         "Url": "https://randomuser.me/api/portraits/men/35.jpg",
-        "IsMain": true
+        "IsMain": true,
+        "IsApproved": true
       }
     ]
   },
@@ -128,7 +154,8 @@
     "Photos": [
       {
         "Url": "https://randomuser.me/api/portraits/men/24.jpg",
-        "IsMain": true
+        "IsMain": true,
+        "IsApproved": true
       }
     ]
   },
@@ -147,7 +174,8 @@
     "Photos": [
       {
         "Url": "https://randomuser.me/api/portraits/men/23.jpg",
-        "IsMain": true
+        "IsMain": true,
+        "IsApproved": true
       }
     ]
   },
@@ -166,7 +194,8 @@
     "Photos": [
       {
         "Url": "https://randomuser.me/api/portraits/men/59.jpg",
-        "IsMain": true
+        "IsMain": true,
+        "IsApproved": true
       }
     ]
   },
@@ -185,7 +214,8 @@
     "Photos": [
       {
         "Url": "https://randomuser.me/api/portraits/men/31.jpg",
-        "IsMain": true
+        "IsMain": true,
+        "IsApproved": true
       }
     ]
   }

@@ -13,6 +13,7 @@ public class DataContext : IdentityDbContext
     public virtual DbSet<Message> Messages { get; set; }
     public virtual DbSet<Group> Groups { get; set; }
     public virtual DbSet<Connection> Connections { get; set; }
+    public virtual DbSet<Photo> Photos { get; set; }
 
     public DataContext(DbContextOptions options) : base(options)
     {
@@ -58,5 +59,7 @@ public class DataContext : IdentityDbContext
             .HasOne(u => u.Sender)
             .WithMany(l => l.MessagesSent)
             .OnDelete(DeleteBehavior.Restrict);
+
+        builder.Entity<Photo>().HasQueryFilter(u => u.IsApproved == true);
     }
 }
