@@ -1,6 +1,6 @@
 ﻿namespace API.Helpers;
 
-public class UserParams : PaginationParams
+public class teUserParams : PaginationParams
 {
     
     public string CurrentUsername { get; set; }
