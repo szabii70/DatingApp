@@ -5,4 +5,6 @@ export interface Photo {
     isMain: boolean;
     publicId?: any;
     appUserId: number;
+    isApproved: boolean
+    username?: string
 }

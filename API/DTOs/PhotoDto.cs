@@ -8,4 +8,5 @@ public class PhotoDto
     public string PublicId { get; set; }
     public int AppUserId { get; set; }
     public bool IsApproved { get; set; }
+    public string Username { get; set; }
 }

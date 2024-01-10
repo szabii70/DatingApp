@@ -1,0 +1,14 @@
+<div *ngIf="photo">
+    <h3>{{photo.username}}</h3>
+    <div class="card mb-4" *ngIf="photo">
+        <div class="card-img-wrapper">
+            <img src="{{photo.url}}" alt="Photo for approval" class="card-img-top">
+            <div class="card-footer">
+                <div class="row">
+                    <button class="btn btn-success col-6" (click)="onApproval()">Approve</button>
+                    <button class="btn btn-danger col-6" (click)="onRejection()">Reject</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

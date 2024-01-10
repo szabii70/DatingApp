@@ -8,11 +8,13 @@ public class UnitOfWork : IUnitOfWork
 {
     private readonly DataContext _context;
     private readonly IMapper _mapper;
+    private readonly IPhotoService _photoService;
 
-    public UnitOfWork(DataContext context, IMapper mapper)
+    public UnitOfWork(DataContext context, IMapper mapper, IPhotoService photoService)
     {
         _context = context;
         _mapper = mapper;
+        _photoService = photoService;
     }
     public IUserRepository UserRepository => new UserRepository(_context, _mapper);
 
@@ -20,9 +22,13 @@ public class UnitOfWork : IUnitOfWork
 
     public ILikeRepository LikesRepository => new LikesRepository(_context);
 
+    public IPhotoRepository PhotoRepository => new PhotoRepository(_context, _mapper, _photoService);
+
     public async Task<bool> Complete()
     {
-        return await _context.SaveChangesAsync() > 0;
+        var result = await _context.SaveChangesAsync() > 0;
+        ;
+        return result;
     }
 
     public bool HasChanges()
