@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AccountService } from './_services/account.service';
 import { User } from './_models/user';
 import { MembersService } from './_services/members.service';
+import { UserParams } from './_models/userParams';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +11,10 @@ import { MembersService } from './_services/members.service';
 })
 export class AppComponent implements OnInit{
   title = 'Dating app';
-  users: any;  
+  users: any; 
 
-  constructor(private accountService: AccountService) {
+  constructor(private accountService: AccountService,
+              private memberService: MembersService) {
 
   }
 

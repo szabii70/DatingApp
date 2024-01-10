@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Member } from '../_models/member';
-import { map, of, take } from 'rxjs';
+import { Subscription, map, of, take } from 'rxjs';
 import { UserParams } from '../_models/userParams';
 import { AccountService } from './account.service';
 import { User } from '../_models/user';
@@ -11,16 +11,17 @@ import { getPaginationHeaders, getPaginatedResult } from './paginationHelper';
 @Injectable({
   providedIn: 'root'
 })
-export class MembersService {
+export class MembersService implements OnDestroy {
   baseUrl = environment.apiUrl
   //members: Member[] = []
   memberCache = new Map()
   user: User | undefined
   userParams: UserParams | undefined
+  userSubscription: Subscription | undefined
 
   constructor(private http: HttpClient,
               private accountService: AccountService) {
-    this.accountService.currentUser$.pipe(take(1)).subscribe({
+    this.userSubscription = this.accountService.currentUser$.subscribe({
       next: user => {
         if(user) {
           this.userParams = new UserParams(user)
@@ -28,6 +29,9 @@ export class MembersService {
         }
       }
     })
+  }
+  ngOnDestroy(): void {
+    this.userSubscription?.unsubscribe()
   }
 
   getUserParams() {
