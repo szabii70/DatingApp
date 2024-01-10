@@ -47,9 +47,9 @@ export class MembersService {
   }
 
   getMembers(userParams: UserParams) {
-    const response = this.memberCache.get(Object.values(userParams).join('-'))
+    //const response = this.memberCache.get(Object.values(userParams).join('-')) //cache disabled temporarely
 
-    if(response) return of(response)
+    //if(response) return of(response) //cahce disabled temporarely
     
     let params = getPaginationHeaders(userParams.pageNumber, userParams.pageSize);
 
@@ -60,7 +60,7 @@ export class MembersService {
 
     return getPaginatedResult<Member[]>(this.baseUrl + 'users', params, this.http).pipe(
       map(response => {
-        this.memberCache.set(Object.values(userParams).join('-'), response)
+        //this.memberCache.set(Object.values(userParams).join('-'), response) //cache disabled temporarely
         return response
       })
     )
@@ -83,8 +83,6 @@ export class MembersService {
   updateMember(member: Member) {
     return this.http.put(this.baseUrl + 'users', member).pipe(
       map(() => {
-        //const index = this.members.indexOf(member)
-        //this.members[index] = {...this.members[index], ...member}
       })
     )
   }
